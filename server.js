@@ -12,7 +12,7 @@ process.on('uncaughtException', err => {
     process.exit(1);
 })
 //setting up config file
-dotenv.config({ path: 'backend/config/config.env' });
+dotenv.config({ path: './config/config.env' });
 
 //Connecting Database
 connectDatabase();
@@ -22,6 +22,12 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 })
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+  
+    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')));
+  }
 
 const server = app.listen(process.env.PORT, () => {
     console.log(`server started on PORT ${process.env.PORT} in ${process.env.NODE_ENV} mode.`)

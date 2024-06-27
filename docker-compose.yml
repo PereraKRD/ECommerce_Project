@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  frontend:
+    container_name: frontend_container
+    build:
+      context: "./frontend"
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=DEVELOPMENT
+    depends_on:
+      - backend
+
+  #MongoDB
+  mongo_db:
+    container_name: database_container
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+
+  backend:
+    container_name: backend_container
+    build: .
+    ports:
+      - 4000:4000
+    environment:
+      NODE_ENV: DEVELOPMENT
+      PORT: 4000
+      MONGO_URI: mongodb+srv://amayasi315:fgPbYENFKOQCW02K@amantha.ethwwnx.mongodb.net/test
+      JWT_SECRET: NJCEFOWER840WFJICM0CW49R0W93RKF039KF03FK
+      JWT_EXPIRES_TIME: 7d 
+      COOKIE_EXPIRES_TIME: 7
+
+      CLOUDINARY_CLOUD_NAME: dgpwa72dj
+      CLOUDINARY_API_KEY: 935756863294114
+      CLOUDINARY_API_SECRET: y6oGKSK00gb39bTtWxZKAsBHKac
+
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongo_db: {}

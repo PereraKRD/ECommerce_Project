@@ -3,6 +3,7 @@ version: "3"
 services:
   frontend:
     container_name: frontend_container
+    image: ryandilz/KDPhonHub_front:v1
     build:
       context: "./frontend"
     ports:
@@ -22,6 +23,7 @@ services:
 
   backend:
     container_name: backend_container
+    image: ryandilz/KDPhonHub_back:v1
     build: .
     ports:
       - 4000:4000

@@ -73,7 +73,7 @@ const Login = () => {
                     marginBottom: "2rem",
                   }}
                 >
-                  Ryan Perera
+                  Login
                 </h1>
                 <div className="form-group">
                   <label htmlFor="email_field">Email</label>

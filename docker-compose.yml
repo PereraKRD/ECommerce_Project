@@ -3,7 +3,7 @@ version: "3"
 services:
   frontend:
     container_name: frontend_container
-    #image: ryandilz/kdphonohub_front:v1
+    image: ryandilz/kdphonohubfront:v1
     build:
       context: "./frontend"
     ports:
@@ -23,10 +23,10 @@ services:
 
   backend:
     container_name: backend_container
-    #image: ryandilz/kdphonohub_back:v1
+    image: ryandilz/kdphonohubback:v1
     build: .
     ports:
-      - 4000:4000
+      - "4000:4000"
     environment:
       NODE_ENV: DEVELOPMENT
       PORT: 4000
